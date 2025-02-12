@@ -129,7 +129,7 @@ def chat():
 
 # 🚀 Waste Classification using Roboflow
 def classify_waste(image_path):
-    """Sends image to Roboflow API for classification and prints the response for debugging."""
+    """Sends image to Roboflow API for classification."""
     url = f"https://detect.roboflow.com/{ROBOFLOW_MODEL_ID}/{ROBOFLOW_VERSION_NUMBER}"
     
     with open(image_path, "rb") as img:
@@ -139,20 +139,16 @@ def classify_waste(image_path):
             params={"api_key": ROBOFLOW_API_KEY}
         )
     
-    print("🟢 Raw Response from Roboflow:", response.text)  # 🔍 Debugging print statement
-    
     if response.status_code == 200:
         data = response.json()
 
         if "predictions" in data and len(data["predictions"]) > 0:
             waste_type = data["predictions"][0]["class"]
-            print("✅ Classified as:", waste_type)  # 🔍 Debugging print statement
             return waste_type
         else:
-            print("⚠️ No waste detected in image.")
             return "Not Recognized"
     else:
-        print("❌ API Error:", response.text)
+        print("Error:", response.text)
         return None  # Handle API failure
 
 # 🚀 Disposal Tips
