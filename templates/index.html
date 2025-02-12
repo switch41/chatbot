@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #121212;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .chat-container {
+            width: 700px;
+            max-width: 90%;
+            background: rgba(30, 30, 30, 0.95);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            overflow: hidden;
+            color: white;
+            position: relative;
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, #005500, #008000);
+            color: white;
+            text-align: center;
+            padding: 18px;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .chat-box {
+            height: 500px;
+            max-height: 60vh;
+            overflow-y: auto;
+            padding: 20px;
+            background: rgba(15, 15, 15, 0.9);
+            display: flex;
+            flex-direction: column;
+            scroll-behavior: smooth;
+        }
+
+        .message {
+            margin-bottom: 14px;
+            padding: 16px;
+            border-radius: 15px;
+            max-width: 85%;
+            font-size: 16px;
+            line-height: 1.6;
+            word-wrap: break-word;
+        }
+
+        .user-message {
+            background: #00aa00;
+            color: white;
+            align-self: flex-end;
+        }
+
+        .bot-message {
+            background: #003300;
+            color: white;
+            align-self: flex-start;
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 12px;
+            white-space: pre-wrap;  /* ✅ Fixes spacing issue */
+        }
+
+        .image-message img {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+
+        .chat-input, .file-upload {
+            display: flex;
+            padding: 14px;
+            background: #1e1e1e;
+            border-top: 1px solid #006400;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 14px;
+            border: 1px solid #006400;
+            border-radius: 25px;
+            outline: none;
+            background: #0f0f0f;
+            color: white;
+        }
+
+        .chat-input button, .file-upload button {
+            background: linear-gradient(135deg, #007700, #00aa00);
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-left: 8px;
+            transition: 0.3s ease-in-out;
+        }
+
+        .chat-input button:hover, .file-upload button:hover {
+            opacity: 0.8;
+            transform: scale(1.05);
+        }
+
+        .light-mode {
+            background: white;
+            color: black;
+        }
+    </style>
+</head>
+<body onload="applySavedMode()">
+    <button onclick="toggleDarkMode()" style="margin-bottom: 10px;">🌙 Toggle Dark Mode</button>
+
+    <div class="chat-container">
+        <div class="chat-header">💬 AI Chatbot</div>
+        <div class="chat-box" id="chat-box"></div>
+        <div class="chat-input">
+            <input type="text" id="user-input" placeholder="Type a message...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+        <div class="file-upload">
+            <input type="file" id="image-input">
+            <button onclick="sendImage()">Classify Image</button>
+        </div>
+    </div>
+
+    <script>
+        function formatMarkdown(text) {
+            return text
+                .replace(/\*\*(.*?)\*\*/g, "<b>$1</b>")  
+                .replace(/\*(.*?)\*/g, "<i>$1</i>");
+        }
+
+        function sendMessage() {
+            let inputField = document.getElementById("user-input");
+            let message = inputField.value.trim();
+            if (!message) return;
+
+            let chatBox = document.getElementById("chat-box");
+
+            let userMessage = document.createElement("div");
+            userMessage.className = "message user-message";
+            userMessage.textContent = message;
+            chatBox.appendChild(userMessage);
+            chatBox.scrollTop = chatBox.scrollHeight;
+            inputField.value = "";
+
+            fetch("/chat", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ message: message })
+            })
+            .then(response => response.json())
+            .then(data => {
+                let botMessage = document.createElement("div");
+                botMessage.className = "message bot-message";
+                
+                // ✅ Fix formatting with <pre> and ensure markdown renders properly
+                botMessage.innerHTML = `<pre style="white-space: pre-wrap;">${formatMarkdown(data.response)}</pre>`;
+                
+                chatBox.appendChild(botMessage);
+                chatBox.scrollTop = chatBox.scrollHeight;
+            });
+        }
+
+        function sendImage() {
+            let fileInput = document.getElementById("image-input");
+            let file = fileInput.files[0];
+
+            if (!file) {
+                alert("Please select an image.");
+                return;
+            }
+
+            let chatBox = document.getElementById("chat-box");
+
+            let userImageMessage = document.createElement("div");
+            userImageMessage.className = "message user-message image-message";
+            let imgElement = document.createElement("img");
+            imgElement.src = URL.createObjectURL(file);
+            userImageMessage.appendChild(imgElement);
+            chatBox.appendChild(userImageMessage);
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            let loadingMessage = document.createElement("div");
+            loadingMessage.className = "message bot-message";
+            loadingMessage.innerHTML = "🔄 Analyzing image...";
+            chatBox.appendChild(loadingMessage);
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            let formData = new FormData();
+            formData.append("file", file);
+
+            fetch("/classify", { method: "POST", body: formData })
+            .then(response => response.json())
+            .then(data => {
+                chatBox.removeChild(loadingMessage);
+
+                let resultMessage = document.createElement("div");
+                resultMessage.className = "message bot-message";
+                resultMessage.innerHTML = `<b>Classified as:</b> ${data.class} <br><b>Disposal Tip:</b> ${data.disposal_tip}`;
+                chatBox.appendChild(resultMessage);
+                chatBox.scrollTop = chatBox.scrollHeight;
+            })
+            .catch(error => {
+                chatBox.removeChild(loadingMessage);
+                alert("Error processing image. Please try again.");
+            });
+        }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle("light-mode");
+            localStorage.setItem("darkMode", document.body.classList.contains("light-mode") ? "light" : "dark");
+        }
+
+        function applySavedMode() {
+            if (localStorage.getItem("darkMode") === "light") {
+                document.body.classList.add("light-mode");
+            }
+        }
+    </script>
+</body>
+</html>

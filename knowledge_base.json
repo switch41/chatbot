@@ -1,0 +1,79 @@
+{
+    "recycling": {
+        "glass_bottles": "Rinse and remove caps before recycling.",
+        "aluminum_cans": "Crush cans and place them in the recycling bin.",
+        "plastic_bottles": "Check the recycling code and recycle accordingly.",
+        "paper": "Keep paper clean and dry before recycling.",
+        "cardboard": "Flatten boxes and remove tape before recycling.",
+        "tetra_paks": "Rinse and separate layers before recycling where accepted.",
+        "steel_cans": "Remove labels and rinse before placing in the bin.",
+        "plastic_bags": "Avoid recycling plastic bags in curbside bins; take them to designated drop-offs.",
+        "batteries": "Recycle batteries at electronic waste collection centers.",
+        "light_bulbs": "Dispose of CFLs and LEDs at hazardous waste collection points."
+    },
+    "eco_tips": {
+        "reduce_waste": "Avoid single-use items and choose reusable products.",
+        "composting": "Compost food scraps to reduce landfill waste.",
+        "energy_saving": "Turn off lights and electronics when not in use.",
+        "water_conservation": "Fix leaks and use water-efficient appliances.",
+        "sustainable_shopping": "Buy in bulk to reduce packaging waste.",
+        "eco_friendly_transport": "Use public transport, walk, or cycle to reduce carbon footprint.",
+        "minimalist_living": "Declutter and donate items you no longer need.",
+        "green_gardening": "Use natural fertilizers and plant native species.",
+        "food_waste_reduction": "Plan meals, store food properly, and use leftovers creatively."
+    },
+    "waste_disposal": {
+        "hazardous_waste": "Dispose of batteries and chemicals at designated collection points.",
+        "electronics": "Donate or recycle old electronics at e-waste centers.",
+        "medical_waste": "Never dispose of medicines in regular trash; use take-back programs.",
+        "construction_debris": "Contact local waste management for proper disposal options.",
+        "furniture": "Donate usable furniture or schedule a bulk waste pickup.",
+        "mattresses": "Check with recycling programs for mattress disposal.",
+        "oil_disposal": "Take used motor oil to auto shops that accept recyclables.",
+        "textiles": "Donate old clothes or find textile recycling programs.",
+        "paint_disposal": "Dispose of unused paint at hazardous waste facilities."
+    },
+    "illegal_dumping": {
+        "reporting": "If you see illegal dumping, report it to local authorities with location details.",
+        "fines": "Illegal dumping can lead to heavy fines and environmental harm.",
+        "community_watch": "Join community efforts to monitor and prevent illegal dumping.",
+        "public_awareness": "Educate others on the consequences of illegal dumping.",
+        "hotspots": "Identify and report illegal dumping hotspots to authorities."
+    },
+    "pickup_schedule": {
+        "household_waste": "Check your municipal website for waste collection schedules.",
+        "bulk_waste": "Schedule an appointment for bulk waste collection in advance.",
+        "recycling_pickup": "Find out your area's recycling collection days.",
+        "yard_waste": "Schedule pickups for leaves, branches, and grass clippings.",
+        "holiday_schedule": "Confirm special schedules for waste collection during holidays.",
+        "organic_waste": "Ensure food scraps and garden waste are picked up separately if required."
+    },
+    "plastic_pollution": {
+        "ocean_waste": "Plastics in the ocean harm marine life and ecosystems.",
+        "microplastics": "Avoid products with microbeads to reduce plastic pollution.",
+        "plastic_alternatives": "Use glass, metal, or compostable materials instead of plastic.",
+        "plastic_free_events": "Encourage events to be plastic-free with reusable options."
+    },
+    "composting_guide": {
+        "what_to_compost": "Compost fruit peels, vegetable scraps, coffee grounds, and eggshells.",
+        "what_not_to_compost": "Avoid meat, dairy, and oily foods in compost bins.",
+        "compost_bin_maintenance": "Turn your compost regularly and maintain moisture levels.",
+        "vermicomposting": "Use worms to break down organic waste efficiently."
+    },
+    "zero_waste_living": {
+        "refuse": "Say no to unnecessary plastic and packaging.",
+        "reduce": "Minimize waste by buying only what you need.",
+        "reuse ": "Find creative ways to reuse household items.",
+        "recycle": "Properly separate recyclables to ensure they are processed correctly.",
+        "rot": "Compost organic waste to complete the zero-waste cycle.",
+        "repair": "Fix broken items instead of replacing them.",
+        "upcycling": "Turn old items into new, useful products."
+    },
+    "sustainable_energy": {
+        "solar_power": "Consider installing solar panels to harness renewable energy.",
+        "wind_energy": "Support wind energy projects in your area.",
+        "energy_efficiency": "Upgrade to energy-efficient appliances to reduce consumption.",
+        "community_solar": "Participate in community solar programs if available.",
+        "energy_audits": "Conduct energy audits to identify areas for improvement."
+    }
+}
