@@ -73,8 +73,6 @@ python chatbot.py
 ![image](https://github.com/user-attachments/assets/7b40def6-32af-4779-b6cb-83842b11a8e3)
 
 
-![Chatbot Interface](image.png)
-
 ## Folder Structure
 
 ```
