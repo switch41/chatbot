@@ -11,13 +11,11 @@ This chatbot leverages AI to provide intelligent responses by combining a knowle
 ✅ **Image classification support** via **Roboflow**\
 ✅ Smart fallback mechanism for enhanced accuracy\
 ✅ Supports both **text and image-based queries**\
-✅ **SQLite database** for storing chat history
 
 ## Technologies Used
 
 - **Backend**: Python (Flask/FastAPI)
 - **AI Model**: Gemini API for natural language processing
-- **Database**: JSON-based knowledge storage & SQLite (chat history)
 - **Image Classification**: Roboflow model
 - **Environment Management**: `.env` file for API keys
 
