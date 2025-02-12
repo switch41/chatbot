@@ -73,6 +73,10 @@ python chatbot.py
 ![image](https://github.com/user-attachments/assets/7b40def6-32af-4779-b6cb-83842b11a8e3)
 
 
+## Workflow
+![workflow](https://github.com/user-attachments/assets/807a3c95-05a4-4098-b20f-8cccc5c9ce6b)
+
+
 ## Folder Structure
 
 ```
