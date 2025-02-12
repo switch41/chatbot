@@ -99,7 +99,7 @@ Contributions are welcome! Please submit pull requests for improvements and addi
 
 ## Copyright
 
-This project is developed and maintained by **switch41**. All rights reserved.
+This project is open-source and licensed under the MIT License.
 
 ## Contact
 
